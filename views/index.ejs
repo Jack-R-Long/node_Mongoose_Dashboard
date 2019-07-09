@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title>Wolf Pack</title>
+</head>
+<body>
+	<div class="container border border-info rounded-lg p-4 mt-4 text-center">
+		<h1>Welcome to the Wolf Pack</h1>
+		<!-- tip to easily see objects printed in full instead of [object Object] -->
+		<% JSON.stringify(messages) %> 
+		<!-- based on the structure of your messages, determine how to display them -->
+		<% if(messages.reg) { %>
+			<% for (var x of messages.reg) { %>
+			<p class="text-danger"><%= x %></p>
+			<% } %>
+		<% } %>
+		<table class="table table-dark">
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Age</th>
+					<th scope="col">Weight (kgs)</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for (var wolf in wolves) { %>
+					<tr>
+						<td scope="row"><%= wolves[wolf].name %></td>
+						<td><%= wolves[wolf].age %></td>
+						<td><%= wolves[wolf].weight %></td>
+						<td><a href="/wolves/<%= wolves[wolf]._id %>">Details </a> | <a href="/wolves/edit/<%= wolves[wolf]._id %>">Edit </a>| <a href="/wolves/destroy/<%= wolves[wolf]._id %>">Delete </a></td>
+					</tr>
+				<% } %> 
+			</tbody>
+		</table>
+		<a class="btn btn-dark mt-3" href="/wolves/new" role="button">Add a Wolf</a>
+
+	</div>
+	
+</body>
+</html>

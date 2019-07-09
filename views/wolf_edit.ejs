@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title>Wolf Edit</title>
+</head>
+<body>
+	<div class="container border border-info rounded-lg p-4 mt-4 text-center">
+		<h1> Edit Your Wolf: <%= wolves.name %> </h1>
+		<!-- tip to easily see objects printed in full instead of [object Object] -->
+		<% JSON.stringify(messages) %> 
+		<!-- based on the structure of your messages, determine how to display them -->
+		<% if(messages.reg) { %>
+			<% for (var x of messages.reg) { %>
+			<p class="text-danger"><%= x %></p>
+			<% } %>
+		<% } %>
+		<form method="POST" action="/wolves/<%= wolves._id %>">
+			<div class="form-group row">
+				<label for="name">Name</label>
+				<input type="text" class="form-control" name="name" value=<%= wolves.name %>>
+			</div>
+			<div class="form-group row">
+				<label for="age">Age</label>
+				<input type="text" class="form-control" name="age" value=<%= wolves.age %>>
+			</div>
+			<div class="form-group row">
+				<label for="weight">Weight (1-50 kgs)</label>
+				<input type="text" class="form-control" name="weight" value=<%= wolves.weight %>>
+			</div>
+			<button type="submit" class="btn btn-info">Edit</button>
+		</form>
+		<a class="btn btn-dark mt-3" href="/" role="button">Back to the Pack!</a>
+	</div>
+</body>
+</html>
